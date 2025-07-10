@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="LOGS" value="${LOG_PATH:-C:/temp/projects/digital-signature-project/${SERVICE_NAME:-logs}}" />
+    <property name="SERVICE_NAME" value="${SERVICE_NAME:-logs}" />
+    <property name="LOG_LEVEL" value="${LOG_LEVEL:-INFO}" />
+    <property name="CONSOLE_PATTERN"
+              value="[${SERVICE_NAME}] %d{'yyyy-MM-dd HH:mm:ss,SSSXX'} %-5p (%t) %c - %msg%n" />
+
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%highlight(${CONSOLE_PATTERN})</pattern>
+            <charset>UTF-8</charset> 
+        </encoder>
+    </appender>
+
+    <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS}/${SERVICE_NAME}.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${CONSOLE_PATTERN}</pattern>
+            <charset>UTF-8</charset> 
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOGS}/archived/${SERVICE_NAME}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>1MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <root level="${LOG_LEVEL}">
+        <appender-ref ref="RollingFile" />
+        <appender-ref ref="Console" />
+    </root>
+
+</configuration>
