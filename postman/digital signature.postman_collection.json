@@ -1,0 +1,51 @@
+{
+	"info": {
+		"_postman_id": "776d92f4-9414-4a30-822f-53ddee8895c5",
+		"name": "digital signature",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44366340",
+		"_collection_link": "https://gabriel-8579772.postman.co/workspace/Gabriel's-Workspace~023b6abd-0795-404e-85bf-17c40e535de3/collection/44366340-776d92f4-9414-4a30-822f-53ddee8895c5?action=share&source=collection_link&creator=44366340"
+	},
+	"item": [
+		{
+			"name": "signature",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "arquivo",
+							"type": "file",
+							"src": "postman-cloud:///1f05e9ac-6cfb-4140-b985-ab7dc0ba00f5"
+						},
+						{
+							"key": "certificado",
+							"type": "file",
+							"src": "postman-cloud:///1f05e9ac-37c1-4970-ad0d-512ca7036cb4"
+						},
+						{
+							"key": "senha",
+							"value": "bry123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/signatures/signature",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"signatures",
+						"signature"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
