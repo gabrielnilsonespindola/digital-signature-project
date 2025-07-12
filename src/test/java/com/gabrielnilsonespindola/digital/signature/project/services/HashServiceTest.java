@@ -68,13 +68,13 @@ public class HashServiceTest {
 		}
 
 		@Test
-		void salvarHashEmArquivoNãoFunciona() {
+		void salvarHashEmArquivoNãoFunciona() throws Exception {
 			
 			String hash = "abcd1234";
-			File destino = new File("Z:\\naoexiste\\hash.txt");
+			File diretorioTemp = java.nio.file.Files.createTempDirectory("tempDirFail").toFile();
 			
 			DigitalSignatureException objException = assertThrows(DigitalSignatureException.class,
-					() -> hashService.salvarHashEmArquivo(hash,destino));	
+					() -> hashService.salvarHashEmArquivo(hash,diretorioTemp));	
 			assertTrue(objException.getMessage().contains("Erro ao salvar hash no arquivo"));
 
 		}
