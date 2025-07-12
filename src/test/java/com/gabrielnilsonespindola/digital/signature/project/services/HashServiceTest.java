@@ -67,7 +67,7 @@ public class HashServiceTest {
 			
 		}
 
-		/*@Test
+		@Test
 		void salvarHashEmArquivoNãoFuncionaSomenteLeitura() throws Exception {
 			
 			String hash = "abcd1234";
@@ -80,7 +80,7 @@ public class HashServiceTest {
 					() -> hashService.salvarHashEmArquivo(hash,destino));	
 			assertTrue(objException.getMessage().contains("Erro ao salvar hash no arquivo"));
 
-		}*/
+		}
 	}
 
 }

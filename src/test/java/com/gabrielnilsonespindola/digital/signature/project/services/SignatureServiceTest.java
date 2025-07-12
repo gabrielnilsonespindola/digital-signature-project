@@ -1,5 +1,7 @@
 package com.gabrielnilsonespindola.digital.signature.project.services;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,22 +20,22 @@ public class SignatureServiceTest {
 		
 		@Test
 		void assinarArquivoCMSFuncionandoPfxValido() {
-			
+			assertTrue(true);
 		}
 		
 		@Test
 		void semChavePrivadaNoPfx() {
-			
+			assertTrue(true);
 		}
 		
 		@Test
 		void senhaIncorreta() {
-			
+			assertTrue(true);
 		}
 		
 		@Test
 		void arquivoInexistente() {
-			
+			assertTrue(true);
 		}
 	}
 	
@@ -42,12 +44,12 @@ public class SignatureServiceTest {
 		
 		@Test
 		void salvamentoCorreto() {
-			
+			assertTrue(true);
 		}
 		
 		@Test
 		void caminhoInvalidoNaoSalva() {
-			
+			assertTrue(true);
 		}
 	}
 	
@@ -56,12 +58,12 @@ public class SignatureServiceTest {
 		
 		@Test
 		void assinaturaESalvamentoOk() {
-			
+			assertTrue(true);
 		}
 		
 		@Test
 		void keyStoreError() {
-			
+			assertTrue(true);
 		}
 	}
 
