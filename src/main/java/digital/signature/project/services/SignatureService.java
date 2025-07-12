@@ -11,6 +11,10 @@ import org.bouncycastle.operator.ContentSigner;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 import org.bouncycastle.operator.jcajce.JcaDigestCalculatorProviderBuilder;
 import org.springframework.stereotype.Service;
+
+import digital.signature.project.services.exceptions.DigitalSignatureException;
+import digital.signature.project.services.exceptions.ObjectNotFoundException;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -47,14 +51,14 @@ public class SignatureService {
             }
 
             if (alias == null) {
-                throw new RuntimeException("Nenhuma chave privada encontrada no KeyStore.");
+                throw new ObjectNotFoundException("Nenhuma chave privada encontrada no KeyStore.");
             }
 
             log.info("Alias encontrado no keystore: {}", alias);
 
             PrivateKey privateKey = (PrivateKey) keyStore.getKey(alias, senhaPkcs12.toCharArray());
             if (privateKey == null) {
-                throw new RuntimeException("Chave privada não encontrada para alias: " + alias);
+                throw new ObjectNotFoundException("Chave privada não encontrada para alias: " + alias);
             }
 
             Certificate cert = keyStore.getCertificate(alias);
@@ -83,7 +87,7 @@ public class SignatureService {
 
         } catch (Exception e) {
             log.error("Erro ao assinar o arquivo CMS", e);
-            throw new RuntimeException("Erro na assinatura: " + e.getMessage(), e);
+            throw new DigitalSignatureException("Erro ao assinar o arquivo digitalmente " + e.getMessage(), e);
         }
     }
 
@@ -93,7 +97,7 @@ public class SignatureService {
             log.info("Arquivo de assinatura salvo com sucesso: {}", destino.getAbsolutePath());
         } catch (Exception e) {
             log.error("Erro ao salvar o arquivo de assinatura", e);
-            throw new RuntimeException("Erro ao salvar assinatura: " + e.getMessage(), e);
+            throw new DigitalSignatureException("Erro ao salvar assinatura: " + e.getMessage(), e);
         }
     }
 

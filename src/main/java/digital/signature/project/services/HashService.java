@@ -4,6 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.stereotype.Service;
+
+import digital.signature.project.services.exceptions.DigitalSignatureException;
+
 import java.io.File;
 import java.security.MessageDigest;
 import java.security.Security;
@@ -27,7 +30,7 @@ public class HashService {
             return hashHex;
         } catch (Exception e) {
             log.error("Erro ao calcular o hash SHA-512 do arquivo", e);
-            throw new RuntimeException("Erro ao calcular hash", e);
+            throw new DigitalSignatureException ("Erro ao calcular hash SHA - 512 " + e.getMessage(), e);
         }
     }
 
@@ -47,7 +50,7 @@ public class HashService {
             log.info("Hash SHA-512 salvo no arquivo com sucesso: {}", destino.getAbsolutePath());
         } catch (Exception e) {
             log.error("Erro ao salvar o hash no arquivo", e);
-            throw new RuntimeException("Erro ao salvar hash", e);
+            throw new DigitalSignatureException("Erro ao salvar hash no arquivo" + e.getMessage(), e);
         }
     }
 }

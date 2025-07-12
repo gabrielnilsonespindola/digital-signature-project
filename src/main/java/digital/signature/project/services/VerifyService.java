@@ -10,6 +10,9 @@ import org.bouncycastle.cms.jcajce.JcaSimpleSignerInfoVerifierBuilder;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.Store;
 import org.springframework.stereotype.Service;
+
+import digital.signature.project.services.exceptions.VerificationException;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.security.Security;
@@ -53,7 +56,7 @@ public class VerifyService {
 
             if (!assinaturaValida) {
                 log.warn("Assinatura inválida.");
-                return false;
+                throw new VerificationException("A assinatura do arquivo é inválida");
             }
 
             CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
@@ -73,7 +76,7 @@ public class VerifyService {
 
         } catch (Exception e) {
             log.error("Erro na verificação da assinatura", e);
-            return false;
+            throw new VerificationException("Erro ao verificar a assinatura digital" + e.getMessage(), e);
         }
     }
 }
