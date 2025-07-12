@@ -1,4 +1,4 @@
-package com.gabrielnilsonespindola.digital.signature.project;
+package digital.signature.project;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

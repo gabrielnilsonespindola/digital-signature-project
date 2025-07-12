@@ -1,4 +1,4 @@
-package com.gabrielnilsonespindola.digital.signature.project.resources;
+package digital.signature.project.controllers;
 
 import java.io.File;
 import java.util.Map;
@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import com.gabrielnilsonespindola.digital.signature.project.services.HashService;
-import com.gabrielnilsonespindola.digital.signature.project.services.SignatureService;
-import com.gabrielnilsonespindola.digital.signature.project.services.VerifyService;
+import digital.signature.project.services.HashService;
+import digital.signature.project.services.SignatureService;
+import digital.signature.project.services.VerifyService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
 @RequestMapping(value = "/signatures")
-public class SignatureResource {
+public class SignatureController {
 
     @Autowired
     private VerifyService verifyService;
