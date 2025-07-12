@@ -68,13 +68,10 @@ public class HashServiceTest {
 		}
 
 		@Test
-		void salvarHashEmArquivoNãoFuncionaSomenteLeitura() throws Exception {
+		void salvarHashEmArquivoNãoFunciona() {
 			
 			String hash = "abcd1234";
-			File destino = File.createTempFile("read-only", ".txt");
-			
-			boolean success = destino.setReadOnly();
-		    assertTrue(success, "Não foi possível tornar o arquivo somente leitura");
+			File destino = new File("Z:\\naoexiste\\hash.txt");
 			
 			DigitalSignatureException objException = assertThrows(DigitalSignatureException.class,
 					() -> hashService.salvarHashEmArquivo(hash,destino));	

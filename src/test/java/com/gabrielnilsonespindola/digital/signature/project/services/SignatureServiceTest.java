@@ -1,4 +1,4 @@
-/*package com.gabrielnilsonespindola.digital.signature.project.services;
+package com.gabrielnilsonespindola.digital.signature.project.services;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -68,4 +68,3 @@ public class SignatureServiceTest {
 	}
 
 }
-*/
