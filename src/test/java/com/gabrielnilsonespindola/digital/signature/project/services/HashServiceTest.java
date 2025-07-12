@@ -68,13 +68,16 @@ public class HashServiceTest {
 		}
 
 		@Test
-		void salvarHashEmArquivoNãoFunciona() throws Exception {
+		void salvarHashEmArquivoNãoFuncionaSomenteLeitura() throws Exception {
 			
 			String hash = "abcd1234";
-			File diretorioTemp = java.nio.file.Files.createTempDirectory("tempDirFail").toFile();
+			File destino = File.createTempFile("read-only", ".txt");
+			
+			boolean success = destino.setReadOnly();
+		    assertTrue(success, "Não foi possível tornar o arquivo somente leitura");
 			
 			DigitalSignatureException objException = assertThrows(DigitalSignatureException.class,
-					() -> hashService.salvarHashEmArquivo(hash,diretorioTemp));	
+					() -> hashService.salvarHashEmArquivo(hash,destino));	
 			assertTrue(objException.getMessage().contains("Erro ao salvar hash no arquivo"));
 
 		}
